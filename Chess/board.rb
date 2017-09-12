@@ -114,11 +114,9 @@ class Board
     # debugger
      @board.each do |row|
       row.each do |piece|
-        # debugger
         if piece.color == color && !piece.valid_moves.empty?
           no_valid_moves = false
         end
-        # debugger
       end
     end
     in_check && no_valid_moves
@@ -131,10 +129,8 @@ class Board
         if self[[row_i, col_i]].is_a?(NullPiece)
           board_dup[[row_i, col_i]] = NullPiece.instance
         else
-          # board_dup[[row_i, col_i]] = self[[row_i, col_i]].dup
           piece = self[[row_i, col_i]]
           board_dup[[row_i, col_i]] = piece.class.new(piece.color, piece.pos.dup, board_dup)
-          # board_dup[[row_i, col_i]].board = board_dup
         end
       end
     end
