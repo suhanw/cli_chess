@@ -1,16 +1,20 @@
 require "Singleton"
+require_relative "modules"
+require_relative "board"
 
 class Piece
-  attr_reader :symbol, :color, :move_dirs, :position
-  def initialize(color)
+  attr_reader :symbol, :color, :move_dirs, :pos, :board
+  def initialize(color, pos, board)
     @color = color
+    @pos = pos
+    @board = board
   end
 end
 
 class King < Piece
 
-  def initialize(color)
-    super(color)
+  def initialize(color, pos, board)
+    super(color, pos, board)
     if color == "black"
       @symbol = "\u265a"
     else
@@ -20,8 +24,8 @@ class King < Piece
 end
 
 class Knight < Piece
-  def initialize(color)
-    super(color)
+  def initialize(color, pos, board)
+    super(color, pos, board)
     if color == "black"
       @symbol = "\u265e"
     else
@@ -31,8 +35,8 @@ class Knight < Piece
 end
 
 class Pawn < Piece
-  def initialize(color)
-    super(color)
+  def initialize(color, pos, board)
+    super(color, pos, board)
     if color == "black"
       @symbol = "\u265f"
     else
@@ -42,47 +46,71 @@ class Pawn < Piece
 end
 
 class Bishop < Piece
-  def initialize(color)
-    super(color)
+  include SlidingPiece
+
+  def initialize(color, pos, board)
+    super(color, pos, board)
     if color == "black"
       @symbol = "\u265d"
     else
       @symbol = "\u2657"
     end
-    @move_dirs = ["D"]
+    @move_dirs = [
+      [1, 1],
+      [-1, -1],
+      [1, -1],
+      [-1, 1]
+    ]
   end
 
 end
 
 class Rook < Piece
-  def initialize(color)
-    super(color)
+  include SlidingPiece
+
+  def initialize(color, pos, board)
+    super(color, pos, board)
     if color == "black"
       @symbol = "\u265c"
     else
       @symbol = "\u2656"
     end
-    @move_dirs = ["H", "V"]
+    @move_dirs = [
+      [0, 1],
+      [0, -1],
+      [1, 0],
+      [-1, 0]
+    ]
   end
 
 end
 
 class Queen < Piece
-  def initialize(color)
-    super(color)
+  include SlidingPiece
+
+  def initialize(color, pos, board)
+    super(color, pos, board)
     if color == "black"
       @symbol = "\u265b"
     else
       @symbol = "\u2655"
     end
-    @move_dirs = ["H", "V", "D"]
+    @move_dirs = [
+      [0, 1],
+      [0, -1],
+      [1, 0],
+      [-1, 0],
+      [1, 1],
+      [-1, -1],
+      [1, -1],
+      [-1, 1]
+    ]
   end
 
 end
 
 class NullPiece < Piece
   include Singleton
-
   def initialize
     @symbol = " "
   end
