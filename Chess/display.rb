@@ -19,7 +19,7 @@ class Display
       light_blue = i.even?
 
       (0..7).to_a.each do |y|
-        background_color = light_blue ? :light_blue : :white
+        background_color = light_blue ? :cyan : :white
         background_color = [x,y] == self.cursor.cursor_pos ? :yellow : background_color
         symbol = " #{@board[[x,y]].symbol} ".colorize(:color => :black, :background => background_color)
         print symbol
