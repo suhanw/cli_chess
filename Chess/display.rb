@@ -12,8 +12,10 @@ class Display
 
 
   def render
+    (0..7).to_a.each { |x_coord| print "  #{x_coord}"} # to print the col positions
+    print "\n"
     (0..7).to_a.each_with_index do |x, i|
-      print "#{i}"
+      print "#{i}" # to print the row positions
       light_blue = i.even?
 
       (0..7).to_a.each do |y|
@@ -25,7 +27,6 @@ class Display
       end
       print "\n"
     end
-    (0..7).to_a.each { |x_coord| print "  #{x_coord}"}
     print "\n"
   end
 
