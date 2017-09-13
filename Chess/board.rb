@@ -69,9 +69,13 @@ class Board
     @board[x][y]
   end
 
+  def move_piece!(start_pos, end_pos)
+    self[end_pos], self[start_pos] = self[start_pos], NullPiece.instance
+    self[end_pos].pos = end_pos
+  end
+
   def move_piece(start_pos, end_pos)
     raise ChessError.new("No piece to move!") if self[start_pos].is_a?(NullPiece)
-    # raise ChessError.new("Piece exists at end_pos")unless self[end_pos].nil?
     unless self[start_pos].valid_moves.include?(end_pos)
       raise ChessError.new("Not a valid move!")
     end
@@ -80,10 +84,6 @@ class Board
     self[end_pos].pos = end_pos
   end
 
-  def move_piece!(start_pos, end_pos)
-    self[end_pos], self[start_pos] = self[start_pos], NullPiece.instance
-    self[end_pos].pos = end_pos
-  end
 
   def in_bounds(pos)
     pos.all? {|coordinate| coordinate.between?(0, 7) }
