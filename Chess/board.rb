@@ -75,9 +75,10 @@ class Board
   end
 
   def move_piece(start_pos, end_pos)
-    raise ChessError.new("No piece to move!") if self[start_pos].is_a?(NullPiece)
-    unless self[start_pos].valid_moves.include?(end_pos)
-      raise ChessError.new("Not a valid move!")
+    if self[start_pos].is_a?(NullPiece)
+      raise ChessError.new("No piece to move! Try again.")
+    elsif !self[start_pos].valid_moves.include?(end_pos)
+      raise ChessError.new("Not a valid move! Try again.")
     end
 
     self[end_pos], self[start_pos] = self[start_pos], NullPiece.instance

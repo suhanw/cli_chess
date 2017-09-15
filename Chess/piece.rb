@@ -33,9 +33,9 @@ class King < Piece
   def initialize(color, pos, board)
     super(color, pos, board)
     if color == "black"
-      @symbol = "\u265a"
+      @symbol = "\u265a".colorize(:color => :black)
     else
-      @symbol = "\u2654"
+      @symbol = "\u265a"
     end
     @move_dirs = [
       [0, 1],
@@ -56,9 +56,9 @@ class Knight < Piece
   def initialize(color, pos, board)
     super(color, pos, board)
     if color == "black"
-      @symbol = "\u265e"
+      @symbol = "\u265e".colorize(:color => :black)
     else
-      @symbol = "\u2658"
+      @symbol = "\u265e"
     end
     @move_dirs = [
       [-2, -1],
@@ -77,9 +77,10 @@ class Pawn < Piece
   def initialize(color, pos, board)
     super(color, pos, board)
     if color == "black"
-      @symbol = "\u265f"
+      @symbol = "\u265f".colorize(:color => :black)
     else
-      @symbol = "\u2659"
+      # @symbol = "\u2659"
+      @symbol = "\u265f"
     end
 
   end
@@ -156,9 +157,9 @@ class Bishop < Piece
   def initialize(color, pos, board)
     super(color, pos, board)
     if color == "black"
-      @symbol = "\u265d"
+      @symbol = "\u265d".colorize(:color => :black)
     else
-      @symbol = "\u2657"
+      @symbol = "\u265d"
     end
     @move_dirs = [
       [1, 1],
@@ -176,9 +177,9 @@ class Rook < Piece
   def initialize(color, pos, board)
     super(color, pos, board)
     if color == "black"
-      @symbol = "\u265c"
+      @symbol = "\u265c".colorize(:color => :black)
     else
-      @symbol = "\u2656"
+      @symbol = "\u265c"
     end
     @move_dirs = [
       [0, 1],
@@ -196,9 +197,9 @@ class Queen < Piece
   def initialize(color, pos, board)
     super(color, pos, board)
     if color == "black"
-      @symbol = "\u265b"
+      @symbol = "\u265b".colorize(:color => :black)
     else
-      @symbol = "\u2655"
+      @symbol = "\u265b"
     end
     @move_dirs = [
       [0, 1],

@@ -11,7 +11,9 @@ class Display
   end
 
 
-  def render
+  def render(color, message=nil)
+    puts "Welcome to CHESS!"
+    puts "It's #{color}'s turn."
     (0..7).to_a.each { |x_coord| print "  #{x_coord}"} # to print the col positions
     print "\n"
     (0..7).to_a.each_with_index do |x, i|
@@ -21,29 +23,30 @@ class Display
       (0..7).to_a.each do |y|
         background_color = light_blue ? :cyan : :white
         background_color = [x,y] == self.cursor.cursor_pos ? :yellow : background_color
-        symbol = " #{@board[[x,y]].symbol} ".colorize(:color => :black, :background => background_color)
+        symbol = " #{@board[[x,y]].symbol} ".colorize(:background => background_color)
         print symbol
         light_blue = !light_blue
       end
       print "\n"
     end
     print "\n"
+    puts message unless message.nil?
   end
 
-  def render_cursor_move
-    begin
-      while true
-        self.render
-        self.cursor.get_input
-        system("clear")
-      end
-    rescue ChessError => e
-      puts e.message
-      sleep 0.5
-      system("clear")
-      retry
-    end
-  end
+#   def render_cursor_move
+#     begin
+#       while true
+#         self.render
+#         self.cursor.get_input
+#         system("clear")
+#       end
+#     rescue ChessError => e
+#       puts e.message
+#       sleep 0.5
+#       system("clear")
+#       retry
+#     end
+#   end
 end
 
 if __FILE__ == $PROGRAM_NAME

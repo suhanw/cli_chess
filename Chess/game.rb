@@ -14,13 +14,11 @@ class Game
   end
 
   def play
-    puts "Welcome to CHESS!"
-
     until self.b.checkmate?(@curr_player.color)
       begin
-        notify_players
+        # notify_players
         # @d.render
-        @curr_player.make_move
+        @curr_player.play_turn
         system("clear")
       rescue ChessError => e
         puts e.message
@@ -28,18 +26,18 @@ class Game
         system("clear")
         retry
       end
-
-      @curr_player = @curr_player == @player1 ? @player2 : @player1
+      swap_turn
     end
+  end
 
+  def swap_turn
+    @curr_player = @curr_player == @player1 ? @player2 : @player1
   end
 
   def notify_players
     puts "It's #{@curr_player.color}'s turn."
   end
 
-  def swap_turn
-  end
 end
 
 if __FILE__ == $PROGRAM_NAME
