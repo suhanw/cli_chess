@@ -49,7 +49,7 @@ class Display
 #   end
 end
 
-if __FILE__ == $PROGRAM_NAME
-  d = Display.new(Board.new)
-  d.render_cursor_move
-end
+# if __FILE__ == $PROGRAM_NAME
+#   d = Display.new(Board.new)
+#   d.render_cursor_move
+# end
