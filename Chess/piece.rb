@@ -159,7 +159,7 @@ class Bishop < Piece
     if color == "black"
       @symbol = "\u265d".colorize(:color => :black)
     else
-      @symbol = "\u265d"
+      @symbol = "\u2657"
     end
     @move_dirs = [
       [1, 1],
