@@ -16,6 +16,7 @@ class HumanPlayer
     begin
       end_turn = false
       until end_turn
+        system("clear")
         if !@start_pos.nil?
           message = "Selected #{@display.board[@start_pos].class} on #{@start_pos}, "
           message += "please select end position with cursor."
@@ -23,25 +24,10 @@ class HumanPlayer
         @display.render(@color, message)
         input = @display.cursor.get_input
         end_turn = make_move(input)
-        system("clear")
-        # if !input.nil? && @start_pos.nil?
-        #   if @display.board[input].color != @color
-        #     raise ChessError.new("Not your piece! Try again.")
-        #   end
-        #   message = "Selected #{@display.board[input].class} on #{input}, please select end position with cursor."
-        #   @start_pos = input
-        # elsif !input.nil?
-        #   @display.board.move_piece(@start_pos, input)
-        #   @start_pos = nil
-        #   swap_turn = true
-        # end
-
       end
     rescue ChessError => e
       message = e.message
       @start_pos = nil
-      # sleep 0.5
-      # system("clear")
       retry
     end
   end
@@ -53,8 +39,6 @@ class HumanPlayer
         raise ChessError.new("Not your piece! Try again.")
       end
       @start_pos = input
-      # message = "Selected #{@display.board[input].class} on #{input}, please select end position with cursor."
-      # @display.render(@color, message)
       return false
     elsif !input.nil?
       @display.board.move_piece(@start_pos, input)

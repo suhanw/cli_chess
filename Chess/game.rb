@@ -15,19 +15,12 @@ class Game
 
   def play
     until self.b.checkmate?(@curr_player.color)
-      begin
-        @curr_player.play_turn
-        system("clear")
-      rescue ChessError => e
-        puts e.message
-        sleep 0.5
-        system("clear")
-        retry
-      end
+      @curr_player.play_turn
       swap_turn
     end
 
     message = "Checkmate! #{@curr_player.color} loses!"
+    system("clear")
     @d.render(@curr_player.color, message)
   end
 
@@ -44,6 +37,6 @@ if __FILE__ == $PROGRAM_NAME
     puts 'Play again? (Y/N)'
     play_again = gets.chomp.upcase == 'Y' ? true : false
     system("clear")
-    puts 'Thanks for playing!'
   end
+  puts 'Thanks for playing!'
 end
