@@ -33,23 +33,4 @@ class Display
     puts message unless message.nil?
   end
 
-#   def render_cursor_move
-#     begin
-#       while true
-#         self.render
-#         self.cursor.get_input
-#         system("clear")
-#       end
-#     rescue ChessError => e
-#       puts e.message
-#       sleep 0.5
-#       system("clear")
-#       retry
-#     end
-#   end
 end
-
-# if __FILE__ == $PROGRAM_NAME
-#   d = Display.new(Board.new)
-#   d.render_cursor_move
-# end

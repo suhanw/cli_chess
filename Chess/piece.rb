@@ -35,7 +35,7 @@ class King < Piece
     if color == "black"
       @symbol = "\u265a".colorize(:color => :black)
     else
-      @symbol = "\u265a"
+      @symbol = "\u2654"
     end
     @move_dirs = [
       [0, 1],
@@ -58,7 +58,7 @@ class Knight < Piece
     if color == "black"
       @symbol = "\u265e".colorize(:color => :black)
     else
-      @symbol = "\u265e"
+      @symbol = "\u2658"
     end
     @move_dirs = [
       [-2, -1],
@@ -80,7 +80,7 @@ class Pawn < Piece
       @symbol = "\u265f".colorize(:color => :black)
     else
       # @symbol = "\u2659"
-      @symbol = "\u265f"
+      @symbol = "\u2659"
     end
 
   end
@@ -179,7 +179,7 @@ class Rook < Piece
     if color == "black"
       @symbol = "\u265c".colorize(:color => :black)
     else
-      @symbol = "\u265c"
+      @symbol = "\u2656"
     end
     @move_dirs = [
       [0, 1],
@@ -199,7 +199,7 @@ class Queen < Piece
     if color == "black"
       @symbol = "\u265b".colorize(:color => :black)
     else
-      @symbol = "\u265b"
+      @symbol = "\u2655"
     end
     @move_dirs = [
       [0, 1],
