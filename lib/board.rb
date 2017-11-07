@@ -113,14 +113,7 @@ class Board
 
   def checkmate?(color)
     in_check = self.in_check?(color)
-    no_valid_moves = true
-    @board.each do |row|
-      row.each do |piece|
-        if piece.color == color && !piece.valid_moves.empty?
-          no_valid_moves = false
-        end
-      end
-    end
+    no_valid_moves = self.all_piece_with_valid_moves(color).length == 0
     in_check && no_valid_moves
   end
 
