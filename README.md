@@ -1,6 +1,6 @@
 # CLI Chess
 
-This is a chess game programmed in Ruby to play on the terminal. It features the 'colorize' gem for rendering and is built following OOP design principles. There are options for either a 2-player game, or a 1-player game against the computer. To guide a player, the valid moves are highlighted on the board.
+This is a chess game programmed in Ruby for play on the terminal, and features the 'colorize' gem for rendering. It is built following OOP design principles. There are options for either a 2-player game, or a 1-player game against the computer. To guide a player, the valid moves are highlighted on the board.
 
 ## Instructions
 Download and unzip the repo to your local machine. Open the terminal and run the following command to install the 'colorize' gem:
