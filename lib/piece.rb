@@ -23,6 +23,15 @@ class Piece
     board_dup.move_piece!(self.pos, end_pos)
     board_dup.in_check?(self.color)
   end
+
+  def capture_pos
+    valid_moves.each do |move|
+      if self.board[move].color != self.color && !self.board[move].is_a?(NullPiece)
+        return move
+      end
+    end
+    nil
+  end
 end
 
 class King < Piece
@@ -88,7 +97,7 @@ class Pawn < Piece
     moves_array += side_attacks
     forward_steps.each do |move|
       new_pos = [self.pos[0] + move[0], self.pos[1] + move[1]]
-      if self.board.in_bounds(new_pos) && self.board[new_pos].is_a?(NullPiece)
+      if self.board.in_bounds?(new_pos) && self.board[new_pos].is_a?(NullPiece)
         moves_array.push(new_pos)
       end
     end
@@ -106,12 +115,12 @@ class Pawn < Piece
     end
 
     moves_array = []
-    if self.board.in_bounds(left_diag)
+    if self.board.in_bounds?(left_diag)
       if self.board[left_diag].color != self.color && !self.board[left_diag].color.nil?
         moves_array.push(left_diag)
       end
     end
-    if self.board.in_bounds(right_diag)
+    if self.board.in_bounds?(right_diag)
       if self.board[right_diag].color != self.color && !self.board[right_diag].color.nil?
         moves_array.push(right_diag)
       end

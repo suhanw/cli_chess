@@ -12,7 +12,7 @@ module SlidingPiece
   end
 
   def trace_moves(curr_pos, dir)
-    return [] if !self.board.in_bounds(curr_pos)
+    return [] if !self.board.in_bounds?(curr_pos)
     return [] if self.board[curr_pos].color == self.color
     return [curr_pos] if self.board[curr_pos].color != self.color && !self.board[curr_pos].is_a?(NullPiece)
     new_row = curr_pos[0] + dir[0]
@@ -28,7 +28,7 @@ module SteppingPiece
     curr_pos = self.pos.dup
     self.move_dirs.each do |dir|
       next_pos = [curr_pos[0] + dir[0], curr_pos[1] + dir[1]]
-      if self.board.in_bounds(next_pos) && self.board[next_pos].color != self.color
+      if self.board.in_bounds?(next_pos) && self.board[next_pos].color != self.color
         moves_array.push(next_pos)
       end
     end

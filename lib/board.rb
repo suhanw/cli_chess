@@ -88,7 +88,7 @@ class Board
   end
 
 
-  def in_bounds(pos)
+  def in_bounds?(pos)
     pos.all? {|coordinate| coordinate.between?(0, 7) }
   end
 
@@ -114,7 +114,7 @@ class Board
   def checkmate?(color)
     in_check = self.in_check?(color)
     no_valid_moves = true
-     @board.each do |row|
+    @board.each do |row|
       row.each do |piece|
         if piece.color == color && !piece.valid_moves.empty?
           no_valid_moves = false
@@ -137,6 +137,32 @@ class Board
       end
     end
     return board_dup
+  end
+
+  def capture_move(color)
+    all_piece_pos(color).each do |piece_pos|
+      if self[piece_pos].capture_pos
+        return [piece_pos, self[piece_pos].capture_pos]
+      end
+    end
+    nil
+  end
+
+  def all_piece_with_valid_moves(color)
+    all_piece_pos(color).select do |piece_pos|
+      self[piece_pos].valid_moves.length > 0
+    end
+  end
+
+  def all_piece_pos(color)
+    all_piece_pos = []
+    self.board.each do |row|
+      row.each do |piece|
+        next if piece.color != color
+        all_piece_pos.push(piece.pos)
+      end
+    end
+    all_piece_pos
   end
 
   protected

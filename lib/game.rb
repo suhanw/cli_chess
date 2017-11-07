@@ -5,10 +5,10 @@ require_relative 'player'
 class Game
   attr_reader :b, :player1, :player2, :curr_player, :d
 
-  def initialize
+  def initialize(play_computer)
     @b = Board.new
     @d = Display.new(b)
-    @player1 = HumanPlayer.new('black', @d)
+    @player1 = play_computer ? ComputerPlayer.new('black', @d) : HumanPlayer.new('black', @d)
     @player2 = HumanPlayer.new('white', @d)
     @curr_player = player2
   end
@@ -33,7 +33,9 @@ end
 if __FILE__ == $PROGRAM_NAME
   play_again = true
   while play_again
-    Game.new.play
+    puts 'Play against computer? (Y/N)'
+    play_computer = gets.chomp.upcase == 'Y' ? true : false
+    Game.new(play_computer).play
     puts 'Play again? (Y/N)'
     play_again = gets.chomp.upcase == 'Y' ? true : false
     system("clear")
