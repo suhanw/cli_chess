@@ -16,7 +16,7 @@ ruby lib/game.rb
 
 ### Object Oriented Programming
 
-Using the OOP design principles, I defined a parent class to describe the common attributes for all pieces, and separate classes/modules for the different chess pieces based on how each of them behaves (i.e., how a piece is moved in a game). Further, I took advantage of class inheritance to group similar chess pieces, which provides them with the similar behaviors, while keeping the code DRY.
+Using the OOP design principles, I defined a parent class to describe the common attributes for all pieces, and separate classes/modules for the different chess pieces based on how each of them behaves (i.e., how a piece is moved in a game). I took advantage of class inheritance to group similar chess pieces, which provides them with similar behaviors, while keeping the code DRY.
 
 - `Piece`
   - `SteppingPiece`
@@ -28,15 +28,15 @@ Using the OOP design principles, I defined a parent class to describe the common
     - `Rook`
   - `Pawn`
 
-Furthermore, to implement a separation of concerns, I defined separate classes that represents the `Player`, the `Board`, the `Display`, and the `Game`. In summary, the `Display` object renders the board (and any instructions/messages) based on the current game state, the `Board` validates and updates the game state based on how all the pieces are positioned, the `Player` provides input to move the pieces into new positions, and lastly the `Game` initializes the board and players, and stops the game when a checkmate is reached.
+Furthermore, to keep a separation of concerns, I defined separate classes that represents the `Player`, the `Board`, the `Display`, and the `Game`. In summary, the `Display` object renders the board (and any instructions/messages) based on the current game state, the `Board` validates and updates the game state based on how all the pieces are positioned, the `Player` provides input to move specific pieces into new positions, and lastly the `Game` initializes the board and players, and stops the game when a checkmate is reached.
 
-Lastly, I used 'duck typing' for the `HumanPlayer` and `ComputerPlayer`, so that the `Game` object does not have to distinguish between the player types, and assumes the same behaviors for either types.
+Lastly, I used 'duck typing' in defining the `HumanPlayer` and `ComputerPlayer`, so that the `Game` object does not have to distinguish between the player types, and assumes the same behaviors for either types.
 
 ### Calculating Moves for a Sliding Piece
 
 ![Sliding Piece](docs/sliding_piece.gif)
 
-Calculating the valid moves for a sliding piece lends itself to a recursive algorithm, where we can assume all the squares along an axis in a given direction as valid until we hit these base cases:
+Calculating the valid moves for a sliding piece lends itself to a recursive algorithm, where we can assume all the squares along an axis in a given direction are valid moves until we hit these base cases:
 1. square is no longer in bounds
 2. square is occupied by a piece of the same color
 3. square is occupied by a piece of the opposing color, which also means the current square is a valid move
@@ -58,7 +58,7 @@ end
 
 ![Computer Player](docs/comp_player.gif)
 
-I used a simple/elegant strategy to define how the `ComputerPlayer` behaves in a game:
+I used a simple strategy to define how the `ComputerPlayer` behaves in a game:
 1. If there is an opponent piece that can be captured, move to capture that piece.
 2. Otherwise, randomly select a piece and perform a randomized move.
 
