@@ -69,7 +69,7 @@ class Board
     @board[x][y]
   end
 
-  def move_piece!(start_pos, end_pos)
+  def move_piece!(start_pos, end_pos) # for use in Piece#move_into_check?
     self[end_pos], self[start_pos] = self[start_pos], NullPiece.instance
     self[end_pos].pos = end_pos
   end
@@ -114,7 +114,6 @@ class Board
   def checkmate?(color)
     in_check = self.in_check?(color)
     no_valid_moves = true
-    # debugger
      @board.each do |row|
       row.each do |piece|
         if piece.color == color && !piece.valid_moves.empty?

@@ -8,7 +8,6 @@ class HumanPlayer
     @color = color
     @display = display
     @start_pos = nil
-    # @end_pos = nil
   end
 
   def play_turn
@@ -33,18 +32,34 @@ class HumanPlayer
   end
 
   def make_move(input)
-    if !input.nil? && @start_pos.nil?
+    if !input.nil? && @start_pos.nil? # case when player is selecting piece to move
       system("clear")
-      if @display.board[input].color != @color
+      if @display.board[input].color != @color # check that player is not selecting opponent piece
         raise ChessError.new("Not your piece! Try again.")
       end
       @start_pos = input
-      return false
-    elsif !input.nil?
-      @display.board.move_piece(@start_pos, input)
+      return false # indicates that player turn is not over yet
+    elsif !input.nil? # case when player has selected piece to move
+      @display.board.move_piece(@start_pos, input) # will throw error if move is not valid
       @start_pos = nil
-      return true
+      return true # indicates that player turn is over
     end
     false
+  end
+end
+
+class ComputerPlayer
+  attr_reader :color, :display
+
+  def initialize(color, display)
+    @color = color
+    @display = display
+    @start_pos = nil
+  end
+
+  def play_turn
+  end
+
+  def make_move
   end
 end

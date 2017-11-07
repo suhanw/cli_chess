@@ -13,10 +13,8 @@ class Piece
   end
 
   def valid_moves
-    # 1. filter out moves that will cause king to be in check
-    # move_into_check?
-    # will call move_into_check? so we CANNOT call move_piece
     all_moves = self.moves
+    # filter out moves that will cause king to be in check
     all_moves.reject { |move| self.move_into_check?(move) }
   end
 
@@ -79,7 +77,6 @@ class Pawn < Piece
     if color == "black"
       @symbol = "\u265f".colorize(:color => :black)
     else
-      # @symbol = "\u2659"
       @symbol = "\u2659"
     end
 
@@ -125,7 +122,7 @@ class Pawn < Piece
 
   def forward_steps
     if self.at_start_row?
-      # 1 step or 2 steps
+      # 1 step or 2 steps if at start row
       if self.color == 'black'
         [[1, 0], [2, 0]]
       else
@@ -133,7 +130,7 @@ class Pawn < Piece
       end
 
     else
-      # just 1 step
+      # just 1 step if not at start row
       if self.color == 'black'
         [[1, 0]]
       else
