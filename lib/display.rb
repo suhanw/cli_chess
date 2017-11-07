@@ -26,7 +26,7 @@ class Display
           background_color = valid_moves.include?([x,y]) ? :light_blue : background_color
         end
         background_color = [x,y] == self.cursor.cursor_pos ? :yellow : background_color
-        symbol = " #{@board[[x,y]].symbol} ".colorize(:background => background_color)
+        symbol = " #{self.board[[x,y]].symbol} ".colorize(:background => background_color)
         print symbol
         cyan = !cyan
       end

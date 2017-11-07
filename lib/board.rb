@@ -95,12 +95,12 @@ class Board
   def in_check?(color)
     king_pos = []
     opponent_moves = []
-    self.board.each do |row|
+    board.each do |row|
       row.each do |piece|
-        # (1) finding the position of the King on the board then
+        # (1) finding the position of the King on the board
         if piece.class == King && piece.color == color
           king_pos = piece.pos
-        # (2) seeing if any of the opposing pieces can move to that position.
+        # (2) collecting moves for all opponent pieces
         elsif piece.color != color
           opponent_moves += piece.moves
         end
@@ -154,9 +154,10 @@ class Board
     end
   end
 
+  private
   def all_piece_pos(color)
     all_piece_pos = []
-    self.board.each do |row|
+    board.each do |row|
       row.each do |piece|
         next if piece.color != color
         all_piece_pos.push(piece.pos)
@@ -165,6 +166,5 @@ class Board
     all_piece_pos
   end
 
-  protected
   attr_reader :board
 end
