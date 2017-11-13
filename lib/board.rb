@@ -1,7 +1,5 @@
 require_relative 'piece'
 require_relative 'exception'
-require 'byebug'
-
 
 class Board
   def initialize
