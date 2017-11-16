@@ -1,5 +1,5 @@
-require_relative 'piece'
 require_relative 'exception'
+require_relative 'pieces/piece'
 require_relative 'pieces/king'
 require_relative 'pieces/queen'
 require_relative 'pieces/bishop'

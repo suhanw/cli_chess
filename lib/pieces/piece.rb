@@ -1,6 +1,6 @@
 require "Singleton"
 require_relative "modules"
-require_relative "board"
+require_relative "../board"
 
 class Piece
   attr_reader :symbol, :color, :move_dirs

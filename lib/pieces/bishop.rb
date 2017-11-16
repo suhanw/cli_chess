@@ -1,4 +1,4 @@
-require_relative "../piece"
+require_relative "piece"
 
 class Bishop < Piece
   include SlidingPiece
