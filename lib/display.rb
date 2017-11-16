@@ -12,8 +12,8 @@ class Display
 
 
   def render(color, message=nil, valid_moves=nil)
-    puts "Welcome to CHESS!"
-    puts "It's #{color}'s turn."
+    puts "Welcome to Chess!"
+    puts "It's #{color.upcase}'s turn."
     (0..7).to_a.each { |x_coord| print "  #{x_coord}"} # to print the col positions
     print "\n"
     (0..7).to_a.each_with_index do |x, i|

@@ -31,7 +31,7 @@ class HumanPlayer
 
 
   def make_move(board, input)
-    if !input.nil? && self.start_pos.nil? # case when player is selecting piece to move
+    if !input.nil? && self.start_pos.nil? # case when player is selecting a piece to move
       system("clear")
       if board[input].color != @color # check that player is not selecting opponent piece
         raise ChessError.new("Not your piece! Try again.")
@@ -76,6 +76,9 @@ class ComputerPlayer
   end
 
   def play_turn(board)
+    system("clear")
+    self.display.render(@color)
+    sleep(2)
     # identify a piece that can move to capture
     capture_move = board.capture_move(self.color)
     if capture_move # if there is an opponent piece that can be captured, move to capture
