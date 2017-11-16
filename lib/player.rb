@@ -78,7 +78,7 @@ class ComputerPlayer
   def play_turn(board)
     system("clear")
     self.display.render(@color)
-    sleep(2)
+    sleep(1.5)
     # identify a piece that can move to capture
     capture_move = board.capture_move(self.color)
     if capture_move # if there is an opponent piece that can be captured, move to capture
